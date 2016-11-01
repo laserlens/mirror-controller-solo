@@ -5,7 +5,7 @@ const SALT_ROUNDS = 10;
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
-  mirror:{id: String, displayData: String}
+  mirror:[{id: String, displayData: { type : Array , "default" : [] }}]
 });
 
 userSchema.pre('save',function(done) {

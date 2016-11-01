@@ -12,7 +12,7 @@ function RegisterController($http, $location) {
       password: ctrl.password,
       mirrorId: ctrl.mirror.id
     }).then(function(response){
-      console.log('register response', response);
+      console.log('whats the register response',response);
       $location.path('/login');
     }, function(error) {
       console.log('error registering', error);
