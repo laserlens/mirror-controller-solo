@@ -13,7 +13,7 @@ function RegisterController($http, $location) {
       mirrorId: ctrl.mirror.id
     }).then(function(response){
       console.log('whats the register response',response);
-      $location.path('/login');
+      $location.path('/mirrorSelector');
     }, function(error) {
       console.log('error registering', error);
     });

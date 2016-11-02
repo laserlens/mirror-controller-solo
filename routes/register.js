@@ -3,7 +3,8 @@ const User = require('../models/user');
 
 router.post('/', function(req, res) {
   console.log('registering new user', req.body);
-  const user = new User({username: req.body.username, password: req.body.password, mirror:[{id:req.body.mirrorId, displayData: { type : Array , "default" : [] }}]});
+  const user = new User({username: req.body.username, password: req.body.password,
+                          mirror:[{id:req.body.mirrorId, displayData: { type : Array , "default" : [] }}]});
   user.save().then(function(response) {
     console.log('whats the response or the post', response);
     res.sendStatus(201);

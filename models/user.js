@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
-
+// new userSchema
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   mirror:[{id: String, displayData: { type : Array , "default" : [] }}]
 });
-
+//encypt user pasword
 userSchema.pre('save',function(done) {
   const user = this;
 
@@ -20,7 +20,7 @@ userSchema.pre('save',function(done) {
     done();
   });
 });
-
+//compare user pasword with password in the database
 userSchema.methods.comparePassword =function (password) {
   const user = this;
 

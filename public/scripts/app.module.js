@@ -1,1 +1,1 @@
-angular.module('mirrorApp', ['ngRoute']);
+angular.module('mirrorApp', ['ngRoute'])

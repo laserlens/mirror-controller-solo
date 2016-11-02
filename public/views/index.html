@@ -5,23 +5,32 @@
     <title>Mirror Controler</title>
 
     <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+
 
     <script src="scripts/app.module.js" charset="utf-8"></script>
     <script src="scripts/login.controller.js" charset="utf-8"></script>
     <script src="scripts/register.controller.js" charset="utf-8"></script>
+    <script src="scripts/selector.controller.js" charset="utf-8"></script>
     <script src="scripts/app.config.js" charset="utf-8"></script>
+    <script src="scripts/app.state.js" charset="utf-8"></script>
+    <script src="scripts/index.controller.js" charset="utf-8"></script>
+    <script src="scripts/nav.service.js" charset="utf-8"></script>
 
     <base href="/" />
   </head>
   <body>
-    <nav class="navbar navbar-default text-center"><h3>Mirror Controller</h3></nav>
-
-
+    <nav ng-controller="IndexController as index" class="navbar navbar-default">
+      <h3 class="text-center">Mirror Controller </h3>
+      <button  ng-show="index.navStatusB.back" class="btn btn-warning btn-navbar back">Back</button>
+      <button  ng-show="index.navStatusS.save" class="btn btn-success btn-navbar save">Save</button>
+      <button  ng-show="index.navStatusP.preview" class="btn btn-primary btn-navbar preview">Preview</button>
+      <button  ng-show="index.navStatusL.logout" class="btn btn-danger btn-navbar logout">Logout</button>
+    </nav>
 
     <ng-view></ng-view>
-
 
   </body>
 </html>
