@@ -2,9 +2,10 @@ angular.module('mirrorApp')
 .controller('RegisterController', RegisterController);
 
 function RegisterController($http, $location) {
-  console.log('RegisterController loaded');
+  //console.log('RegisterController loaded');
   var ctrl = this;
 
+//post the users data that they registered
   ctrl.register = function() {
     console.log('registering new user');
     $http.post('/register', {
@@ -13,6 +14,7 @@ function RegisterController($http, $location) {
       mirrorId: ctrl.mirror.id
     }).then(function(response){
       console.log('whats the register response',response);
+      //then send the user to the mirrorSelector view
       $location.path('/mirrorSelector');
     }, function(error) {
       console.log('error registering', error);

@@ -17,11 +17,11 @@ exports.setup = function () {
       done(null, user.id);
       });
 
-  passport.deserializeUser(function () {
-    User.findById(id).then(function () {
-      done(null, user);
-    }).catch(function (err) {
-      done(err);
+  passport.deserializeUser(function(id, done){
+    User.findById(id).then(function(user){
+        done(null, user);
+      }).catch(function(err){
+        done(err);
     });
   });
 

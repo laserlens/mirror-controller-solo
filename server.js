@@ -4,6 +4,7 @@ const connection = require('./db/connection');
 const path = require('path');
 const login = require('./routes/login');
 const register = require('./routes/register');
+const mirrors = require('./routes/mirrors')
 const auth = require('./auth/setup');
 const passport = require('passport');
 const session = require('express-session');
@@ -32,17 +33,19 @@ app.use(passport.session());
 
 app.use('/login', login);
 app.use('/register', register);
+app.use('/mirrors', mirrors);
 
-app.get('/', function(req, res){
+app.get('/*', function(req, res){
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
 //eveything beyod this point is authenticate
 app.use(ensureAuthenticated);
 
-app.get('/*', function(req, res){
-  res.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
+//redundent code I think?
+// app.get('/*', function(req, res){
+//   res.sendFile(path.join(__dirname, 'public/views/index.html'));
+// });
 
 function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()){
