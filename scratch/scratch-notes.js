@@ -40,3 +40,5 @@ db.update ({'seraching criteria goes here ' },
                ]//'inserted Array containing the list of object'
       }
 });
+
+var currentUser = UserService.name.currentUser;

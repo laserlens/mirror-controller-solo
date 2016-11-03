@@ -15,7 +15,7 @@ function RegisterController($http, $location) {
     }).then(function(response){
       console.log('whats the register response',response);
       //then send the user to the mirrorSelector view
-      $location.path('/mirrorSelector');
+      $location.path('/login');
     }, function(error) {
       console.log('error registering', error);
     });

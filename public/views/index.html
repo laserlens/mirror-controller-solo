@@ -17,7 +17,7 @@
     <script src="scripts/app.config.js" charset="utf-8"></script>
     <script src="scripts/index.controller.js" charset="utf-8"></script>
     <script src="scripts/nav.service.js" charset="utf-8"></script>
-    <script src="scripts/user.service.js" charset="utf-8"></script>
+
 
     <base href="/" />
   </head>
@@ -27,7 +27,7 @@
       <button  ng-show="index.navStatusB.back" class="btn btn-warning btn-navbar back">Back</button>
       <button  ng-show="index.navStatusS.save" class="btn btn-success btn-navbar save">Save</button>
       <button  ng-show="index.navStatusP.preview" class="btn btn-primary btn-navbar preview">Preview</button>
-      <button  ng-show="index.navStatusL.logout" class="btn btn-danger btn-navbar logout">Logout</button>
+      <a href="/login"><button  ng-show="index.navStatusL.logout" class="btn btn-danger btn-navbar logout">Logout</button></a>
     </nav>
 
     <ng-view></ng-view>

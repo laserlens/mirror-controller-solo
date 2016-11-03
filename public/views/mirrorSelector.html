@@ -2,13 +2,12 @@
   <div class="row well">
     <label class="control-label">Pick a Mirror to Edit: </label>
     <select class="form-control input-lg">
-      <option>PlaceHolder</option>
-      <option>A Mirror Id</option>
+      <option ng-repeat="mirror in selector.mirrors">{{mirror.id}}</option>
     </select>
     <button class="btn btn-primary btn-block">Edit Display</button>
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-submit="selector.regMirrorId()">
       <label class="control-label">Add a New Mirror: </label>
-      <input type="email" class="form-control input-lg" ng-model="register.mirror.id" placeholder="Mirror Id">
+      <input type="text" ng-value="clear" class="form-control input-lg" ng-model="selector.mirror.id" placeholder="Mirror Id">
       <button type="submit" class="btn btn-success btn-block">Add</button>
     </form>
   </div>
