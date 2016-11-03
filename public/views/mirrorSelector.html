@@ -1,8 +1,9 @@
 <div class="container" ng-init="selector.listMirrors()">
   <div class="row well">
     <label class="control-label">Pick a Mirror to Edit: </label>
-    <select class="form-control input-lg">
-      <option ng-repeat="mirror in selector.mirrors">{{mirror.id}}</option>
+    <select class="form-control input-lg" ng-change="selector.select()" ng-model="selector.id">
+      <option value="" disabled selected>Select your mirror</option>
+      <option ng-repeat="mirror in selector.mirrors">{{mirror.id}}<a class="hiddenData">{{mirror.displayData}}</a></option>
     </select>
     <button class="btn btn-primary btn-block">Edit Display</button>
     <form class="form-horizontal" ng-submit="selector.regMirrorId()">

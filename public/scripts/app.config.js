@@ -8,6 +8,9 @@ angular.module('mirrorApp').config(function($routeProvider, $locationProvider) {
   }).when('/mirrorSelector', {
     templateUrl: 'views/mirrorSelector.html',
     controller: 'SelectorController as selector'
+  }).when('/editor', {
+    templateUrl: 'views/editor.html',
+    controller: 'EditorController as editor'
   }).otherwise({
     templateUrl: 'views/login.html',
     controller: 'LoginController as login'

@@ -7,6 +7,12 @@ function SelectorController($http, $location, NavService) {
   //turn the ngshow true for the logout button on the navbar
   NavService.status.logout = true;
 
+  //function that recieves the input value of elected
+  ctrl.select = function() {
+    ctrl.userMirror = ctrl.id;
+    console.log('whats the ctrl.userMirror', ctrl.userMirror);
+  }
+
   //get a list of the mirror ids assaing to the user
   ctrl.listMirrors = function(){
 
@@ -15,7 +21,7 @@ function SelectorController($http, $location, NavService) {
       //console.log('response that comes back', response);
       //the array to ngReapet threw to get mirrorIds
       ctrl.mirrors = response.data;
-      //console.log('whats the mirrorId', ctrl.mirrors);
+      console.log('whats the mirrorId', ctrl.mirrors);
     }, function(error){
       console.log('error making request', error);
     });
