@@ -2,3 +2,11 @@
 .logout{
   float: right;
 }
+.display{
+  height: 37em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.toolbar{
+  height: 37em;
+}

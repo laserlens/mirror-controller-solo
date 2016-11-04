@@ -1,7 +1,7 @@
 angular.module('mirrorApp')
 .controller('LoginController', LoginController);
 
-function LoginController($http, $location, NavService) {
+function LoginController($http, $location, NavService, UserService) {
   //console.log('LoginController loaded');
   var ctrl = this;
 
@@ -10,7 +10,7 @@ function LoginController($http, $location, NavService) {
   NavService.status.save = false;
   NavService.status.preview = false;
   NavService.status.logout = false;
-  
+
   //post the username and password
   ctrl.login = function() {
     //console.log('logging in');
@@ -19,6 +19,8 @@ function LoginController($http, $location, NavService) {
       password: ctrl.password
     }).then(function(response){
       //then send user to the mirrorSelector view
+      UserService.user.username = ctrl.username;
+      console.log('whats the service', UserService.user.username);
       $location.path('/mirrorSelector');
     }, function(error) {
       console.log('error loggin in', error);

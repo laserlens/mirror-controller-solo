@@ -3,12 +3,12 @@
     <label class="control-label">Pick a Mirror to Edit: </label>
     <select class="form-control input-lg" ng-change="selector.select()" ng-model="selector.id">
       <option value="" disabled selected>Select your mirror</option>
-      <option ng-repeat="mirror in selector.mirrors">{{mirror.id}}<a class="hiddenData">{{mirror.displayData}}</a></option>
+      <option ng-repeat="mirror in selector.mirrors" >{{mirror.id}}</option>
     </select>
-    <button class="btn btn-primary btn-block">Edit Display</button>
+    <a href="/editor"><button class="btn btn-primary btn-block" ng-disabled="selector.disable">Edit Display</button></a>
     <form class="form-horizontal" ng-submit="selector.regMirrorId()">
       <label class="control-label">Add a New Mirror: </label>
-      <input type="text" ng-value="clear" class="form-control input-lg" ng-model="selector.mirror.id" placeholder="Mirror Id">
+      <input type="text" class="form-control input-lg" ng-model="selector.mirror.id" placeholder="Mirror Id">
       <button type="submit" class="btn btn-success btn-block">Add</button>
     </form>
   </div>

@@ -5,18 +5,22 @@ const User = require('../models/user');
 
 //get the user's data
 router.get('/', function(req, res ){
+  //console.log('whats the body', req.body);
   //console.log('whats the response', res.req.user.mirror);
   //send only the mirror array
   res.send(res.req.user.mirror);
+  // User.find([]).then(function(dataFromTheDatabase){
+  // console.log('Documents from mongo', dataFromTheDatabase);
+  // res.send(dataFromTheDatabase);
 });
 
 //add a mirror to the user's data
 router.post('/', function(req, res) {
- //console.log('new mirror data', req.body);
+  //console.log('new mirror data', req.body);
 
   //const mirrorId to old added mirror and the corisponding displayData array
   const mirrorId = {id:req.body.mirrorId, displayData: { type : Array , "default" : [] }};
-//update current user by push to the mirror found by current username
+  //add new mirror id by update current user then push to the mirror found by current username
   User.update({ username: res.req.user.username },
     { $push: { mirror: mirrorId } })
   .then(function(response) {
