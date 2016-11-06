@@ -1,27 +1,93 @@
-<!-- <div class="container-fluid">
-    <div class="col-sm-2 col-md-2 sidebar well toolbar">
-      <div class="row">
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li>HTML</li>
-          <li><input /></li>
-          <li><button>submit</button></li>
-        </ul>
 
-      </div>
-      </div>
+<footer class="footer">
+  <div class="container text-center">
+    <button class="btn btn-warning fButton" ng-click="editor.weatherOn()">Weather</button>
+    <button class="btn btn-warning fButton" ng-click="editor.timeOn()">Time</button>
+    <button class="btn btn-warning fButton" ng-click="editor.newsOn()">News</button>
+    <button class="btn btn-warning fButton" ng-click="editor.messageOn()">Message</button>
   </div>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-9 col-md-9 col-lg-9 well display">
-      <h1>where am I</h1>
+</footer>
+
+<!--weather modal-->
+<div id="weatherModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" ng-click="editor.weatherOff()">×</button>
+      <h2>3 Day Forecast</h2>
     </div>
+    <form ng-submit="editor.weatherZip()">
+      <div class="modal-body">
+        <input type="number" ng-model="editor.zip" placeholder="Zip Code">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" name="button" class="btn btn-success">Add</button>
+    </div>
+    </form>
   </div>
-</div> -->
-<form ng-submit="editor.weatherZip()">
-  <input type="number" ng-model="editor.zip" placeholder="Zip Code">
-  <button type="submit" name="button" class="btn btn-success btn-block">Add</button>
-</form>
+
+</div>
+
+<!--time modal-->
+<div id="timeModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" ng-click="editor.timeOff()">×</button>
+      <h2>Current Time</h2>
+    </div>
+    <form>
+      <div class="modal-body">
+        <input type="text" placeholder="PlaceHolder">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" name="button" class="btn btn-success">Add</button>
+    </div>
+    </form>
+  </div>
+
+</div>
+
+<!--news modal-->
+<div id="newsModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" ng-click="editor.newsOff()">×</button>
+      <h2>Pick a News Source</h2>
+    </div>
+    <form>
+      <div class="modal-body">
+        <input type="text" placeholder="PlaceHolder">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" name="button" class="btn btn-success">Add</button>
+    </div>
+    </form>
+  </div>
+
+</div>
+
+<!--message modal-->
+<div id="messageModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" ng-click="editor.messageOff()">×</button>
+      <h2>Leave a Message</h2>
+    </div>
+    <form>
+      <div class="modal-body">
+        <input type="text" placeholder="PlaceHolder">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" name="button" class="btn btn-success">Add</button>
+    </div>
+    </form>
+  </div>
+
+</div>

@@ -12,8 +12,13 @@ function WeatherService($http) {
   this.citySearch = function (zip) {
    return $http.get(cityLookup + zip + '.json')
        .then(function(response){
-       console.log('search response', response);
-       //return response.data.data;
+         var city = response.data.location.city;
+         console.log('whats the city',city);
+        //  $http.get(forecast + city.replace(' ','_') + '.json')
+        //      .then(function(response){
+        //      console.log('weather response', response);
+             //return response.data.data;
+           //});//end of get in get
     });//end of get
   };//end of forecastSearch
 

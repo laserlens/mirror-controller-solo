@@ -17,6 +17,7 @@
     <script src="scripts/app.config.js" charset="utf-8"></script>
     <script src="scripts/index.controller.js" charset="utf-8"></script>
     <script src="scripts/editor.controller.js"charset="utf-8"></script>
+    
     <script src="scripts/nav.service.js" charset="utf-8"></script>
     <script src="scripts/currentUser.service.js" charset="utf-8"></script>
     <script src="scripts/user.service.js" charset="utf-8"></script>
@@ -27,7 +28,7 @@
     <base href="/" />
   </head>
   <body>
-    <nav ng-controller="IndexController as index" class="navbar navbar-default">
+    <nav ng-controller="IndexController as index" class="navbar navbar-default navee">
       <h3 class="text-center">Mirror Controller </h3>
       <button  ng-show="index.navStatusB.back" class="btn btn-warning btn-navbar back">Back</button>
       <button  ng-show="index.navStatusS.save" class="btn btn-success btn-navbar save">Save</button>
