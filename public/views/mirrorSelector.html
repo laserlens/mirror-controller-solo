@@ -5,11 +5,11 @@
       <option value="" disabled selected>Select your mirror</option>
       <option ng-repeat="mirror in selector.mirrors" >{{mirror.id}}</option>
     </select>
-    <a href="/editor"><button class="btn btn-primary btn-block" ng-disabled="selector.disable">Edit Display</button></a>
+    <a href="/editor"><button class="btn btn-primary btn-block normal" ng-disabled="selector.disable">Edit Display</button></a>
     <form class="form-horizontal" ng-submit="selector.regMirrorId()">
       <label class="control-label">Add a New Mirror: </label>
       <input type="text" class="form-control input-lg" ng-model="selector.mirror.id" placeholder="Mirror Id">
-      <button type="submit" class="btn btn-success btn-block">Add</button>
+      <button type="submit" class="btn btn-success btn-block normal">Add</button>
     </form>
   </div>
 </div>

@@ -1,4 +1,34 @@
 /* styles */
+html {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+.noIbar {
+cursor:default;
+}
+#screen{
+  border: 1px solid black;
+  height:40em;
+  position: relative;
+}
+#draggable{
+  background-color:transparent;
+}
+#clock{
+  background-color:transparent;
+}
+.normal{
+  margin: 0;
+}
+/*.floating{
+  float:left;
+  margin: 1em;
+}*/
 .logout{
   float: right;
 }
