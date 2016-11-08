@@ -48,3 +48,5 @@ TypeError: Cannot read property 'mirror' of undefined
     at /Users/adrian/Desktop/Code/mirror-controller-solo/routes/mirrors.js:11:24
 
 weather underground('0f6ff76f537e4c48')
+
+for (var i = 0; i < ctrl.topNews.length; i++) {}

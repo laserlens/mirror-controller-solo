@@ -5,9 +5,12 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
   var ctrl = this;
   //store forecast data
   ctrl.forecasts = [];
+  //store news data
+  ctrl.topNews=[];
   //starts ng-show as false
   ctrl.activeW = false;
   ctrl.activeT = false;
+  ctrl.activeN = false;
 
   //show preview, save, and logout buttons
   NavService.status.save = true;
@@ -56,8 +59,24 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
   ctrl.choice = function() {
     //ativate add button after user makes a selection
     ctrl.disable = false;
-    //attach the option value to ctrl.source
-    ctrl.userSource = ctrl.scource;
+    //for loop to go through and find id that corisponds with the source the user selected
+    for (var i = 0; i < ctrl.sources.length; i++) {
+      if (ctrl.name == ctrl.sources[i].name) {
+        ctrl.userSource = ctrl.sources[i].id;
+      }};
+    //console.log('what is the users source',ctrl.userSource);
+    //get the news of the disired source
+    NewsService.newsSearch(ctrl.userSource).then(function(response){
+      // make a copy of object instead of storing object itself
+      ctrl.topNews.push(angular.copy(response.data.articles));
+      //console.log('whats the array of topNews',ctrl.topNews);
+
+      //restart the marque when adding another news source
+      var marquee = document.getElementsByClassName('mNews');
+      for(var i = 0; i < marquee.length; i++) {
+          marquee[i].start();
+        };
+    });
   }
 
 
@@ -76,18 +95,6 @@ ctrl.weatherOff = function() {
     wModal.style.display = "none";
 }
 
-// //time modal controls
-// // Get the modal
-// var tModal = document.getElementById('timeModal');
-//
-// // When the user clicks the button, open the modal
-// ctrl.timeOn = function() {
-//     tModal.style.display = "block";
-// }
-// // When the user clicks on <span> (x), close the modal
-// ctrl.timeOff = function() {
-//     tModal.style.display = "none";
-// }
 
 //news modal controls
 // Get the modal
@@ -96,13 +103,17 @@ var nModal = document.getElementById('newsModal');
 // When the user clicks the button, open the modal
 ctrl.newsOn = function() {
     nModal.style.display = "block";
+    //get the sources to add to the selector
     NewsService.sourceSearch().then(function(response){
-
+      //console.log('what are the sources to choose from', response.data.sources);
+      ctrl.sources = response.data.sources
+      //console.log('whats ctrl.sources', ctrl.sources);
     });
 }
 // When the user clicks on <span> (x), close the modal
 ctrl.newsOff = function() {
     nModal.style.display = "none";
+    ctrl.activeN = true;
 }
 
 //message modal controls
@@ -167,6 +178,24 @@ $("#clock").draggable({
     // something like this change the values according to your requirements
     $(this).css("font-size", (size.width * size.height)/1000 + "px");
   }
-});
+});//end of the draggable clock element
+//clock draggable element
+$(".marquee").draggable({
+  cursor: "move",
+  delay: 100,
+  scroll: false,
+  containment: "parent"
+})
+.resizable({
+  containment: "parent",
+  maxWidth: 1000,
+  resize: function( event, ui ) {
+    // handle fontsize here
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // something like this change the values according to your requirements
+    $(this).css("font-size", (size.width * size.height)/1000 + "px");
+  }
+});//end of the draggable time element
 
 }//end of EditorController function

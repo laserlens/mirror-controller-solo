@@ -22,13 +22,15 @@ cursor:default;
 #clock{
   background-color:transparent;
 }
+#news{
+  background-color: transparent;
+}
+.newsfloat{
+  float:left;
+}
 .normal{
   margin: 0;
 }
-/*.floating{
-  float:left;
-  margin: 1em;
-}*/
 .logout{
   float: right;
 }
@@ -84,16 +86,6 @@ button{
     animation-duration: 0.4s
 }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
 
 /* The Close Button */
 .close {
