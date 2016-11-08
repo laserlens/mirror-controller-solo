@@ -35,11 +35,11 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
       ctrl.loadingOn = false;
     });
     ctrl.zip = null;
-    wModal.style.display = "none";
+    wModal.style.display = 'none';
   };//end of weather get
 
   //time widget
-  ctrl.clock = "loading clock..."; // initialise the time variable
+  ctrl.clock = 'loading clock...'; // initialise the time variable
   ctrl.tickInterval = 1000 //ms
 
   var tick = function () {
@@ -72,7 +72,7 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
       //console.log('whats the array of topNews',ctrl.topNews);
 
       //restart the marque when adding another news source
-      var marquee = document.getElementsByClassName('mNews');
+      var marquee = document.getElementsByClassName('marquee');
       for(var i = 0; i < marquee.length; i++) {
           marquee[i].start();
         };
@@ -88,11 +88,11 @@ var wModal = document.getElementById('weatherModal');
 
 // When the user clicks the button, open the modal
 ctrl.weatherOn = function() {
-    wModal.style.display = "block";
+    wModal.style.display = 'block';
 }
 // When the user clicks on <span> (x), close the modal
 ctrl.weatherOff = function() {
-    wModal.style.display = "none";
+    wModal.style.display = 'none';
 }
 
 
@@ -102,7 +102,7 @@ var nModal = document.getElementById('newsModal');
 
 // When the user clicks the button, open the modal
 ctrl.newsOn = function() {
-    nModal.style.display = "block";
+    nModal.style.display = 'block';
     //get the sources to add to the selector
     NewsService.sourceSearch().then(function(response){
       //console.log('what are the sources to choose from', response.data.sources);
@@ -112,7 +112,7 @@ ctrl.newsOn = function() {
 }
 // When the user clicks on <span> (x), close the modal
 ctrl.newsOff = function() {
-    nModal.style.display = "none";
+    nModal.style.display = 'none';
     ctrl.activeN = true;
 }
 
@@ -122,80 +122,80 @@ var mModal = document.getElementById('messageModal');
 
 // When the user clicks the button, open the modal
 ctrl.messageOn = function() {
-    mModal.style.display = "block";
+    mModal.style.display = 'block';
 }
 // When the user clicks on <span> (x), close the modal
 ctrl.messageOff = function() {
-    mModal.style.display = "none";
+    mModal.style.display = 'none';
 }
 // When the user clicks anywhere outside of the modal, close all modals
 window.onclick = function(event) {
     if (event.target == mModal||event.target == wModal||event.target == nModal) {
-        mModal.style.display = "none";
-        wModal.style.display = "none";
-        nModal.style.display = "none";
-        //tModal.style.display = "none";
+        mModal.style.display = 'none';
+        wModal.style.display = 'none';
+        nModal.style.display = 'none';
+        //tModal.style.display = 'none';
     }
 }
 
 
 //use jquery-ui draggable feature with resizable
 //weather widget draggable controls
-$("#draggable").draggable({
-  cursor: "move",
+$('#draggable').draggable({
+  cursor: 'move',
   delay: 100,
   scroll: false,
-  containment: "parent"
+  containment: 'parent'
 })
 .resizable({
-  containment: "parent",
+  containment: 'parent',
   minHeight: 375,
   minWidth: 92,
   maxWidth: 289,
   resize: function( event, ui ) {
-    // handle fontsize here
+    // handle fontsize
     //console.log(ui.size); // gives you the current size of the div
     var size = ui.size;
-    // something like this change the values according to your requirements
-    $(this).css("font-size", (size.width * size.height)/7000 + "px");
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/7000 + 'px');
   }
 });//end of the draggable weather element
 
 //clock draggable element
-$("#clock").draggable({
-  cursor: "move",
+$('#clock').draggable({
+  cursor: 'move',
   delay: 100,
   scroll: false,
-  containment: "parent"
+  containment: 'parent'
 })
 .resizable({
-  containment: "parent",
+  containment: 'parent',
   maxWidth: 289,
   resize: function( event, ui ) {
     // handle fontsize here
     //console.log(ui.size); // gives you the current size of the div
     var size = ui.size;
-    // something like this change the values according to your requirements
-    $(this).css("font-size", (size.width * size.height)/1000 + "px");
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
   }
 });//end of the draggable clock element
-//clock draggable element
-$(".marquee").draggable({
-  cursor: "move",
+//news draggable element
+$('#news').draggable({
+  cursor: 'move',
   delay: 100,
   scroll: false,
-  containment: "parent"
+  containment: 'parent'
 })
 .resizable({
-  containment: "parent",
+  containment: 'parent',
   maxWidth: 1000,
   resize: function( event, ui ) {
-    // handle fontsize here
+    // handle fontsize
     //console.log(ui.size); // gives you the current size of the div
     var size = ui.size;
-    // something like this change the values according to your requirements
-    $(this).css("font-size", (size.width * size.height)/1000 + "px");
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
   }
-});//end of the draggable time element
+});//end of the draggable news element
 
 }//end of EditorController function

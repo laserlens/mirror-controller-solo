@@ -1,18 +1,18 @@
 <div class="container noIbar">
   <div class="col-xs-12 col-md-12 col-lg-12" id="screen">
     <p ng-show="editor.loadingOn">loading...</p>
-    <div ng-show="editor.activeW" class="row col-xs-3 col-md-3 col-lg-3 ui-widget-content" id="draggable">
+    <div ng-show="editor.activeW" class="row col-xs-3 col-md-3 col-lg-3 ui-widget-content move" id="draggable">
       <span ng-repeat="forecast in editor.forecasts" class="text-center">
         <p><u><strong>{{forecast.date.weekday}}</strong></u></p>
         <img class="img-responsive center-block" src="{{forecast.icon_url}}" alt="{{forecast.icon}}" />
         <p>Temp: {{forecast.high.fahrenheit}}/{{forecast.low.fahrenheit}}&deg;F</p>
       </span>
     </div>
-    <div ng-show="editor.activeT" class="row col-xs-4 col-md-4 col-lg-4 ui-widget-content" id="clock">
+    <div ng-show="editor.activeT" class="row col-xs-4 col-md-4 col-lg-4 ui-widget-content move" id="clock">
       <p>{{editor.clock | date:'medium'}}</p>
     </div>
-    <div ng-show="editor.activeN" ng-repeat="news in editor.topNews" data-drag="true" class="row col-xs-12 col-md-12 col-lg-12 ui-widget-content marquee" id="news">
-      <marquee class="mNews">
+    <div ng-show="editor.activeN" class="row col-xs-12 col-md-12 col-lg-12 ui-widget-content move" id="news">
+      <marquee ng-repeat="news in editor.topNews" class="marquee">
         <span ng-repeat="data in news"><strong>{{data.title}}:&nbsp;</strong>{{data.description}}&nbsp;&nbsp;&nbsp;</span>
       </marquee>
     </div>

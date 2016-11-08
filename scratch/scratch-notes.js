@@ -50,3 +50,28 @@ TypeError: Cannot read property 'mirror' of undefined
 weather underground('0f6ff76f537e4c48')
 
 for (var i = 0; i < ctrl.topNews.length; i++) {}
+
+//news draggable element
+$("#news").draggable({
+  cursor: "move",
+  delay: 100,
+  scroll: false,
+  containment: "parent"
+})
+.resizable({
+  containment: "parent",
+  maxWidth: 1000,
+  resize: function( event, ui ) {
+    // handle fontsize
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // change the values of the font-size
+    $(this).css("font-size", (size.width * size.height)/1000 + "px");
+  }
+});//end of the draggable news element
+//use jquery.marquee since marquee tag is not supported anymore and might go away
+$('.marquee').marquee({
+  duration: 5000,
+  startVisible: true,
+  duplicated: true
+});

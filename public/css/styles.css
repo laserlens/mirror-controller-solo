@@ -9,7 +9,10 @@ html {
                                   not supported by any browser */
 }
 .noIbar {
-cursor:default;
+  cursor:default;
+}
+.move {
+  cursor: move;
 }
 #screen{
   border: 1px solid black;
