@@ -75,3 +75,33 @@ $('.marquee').marquee({
   startVisible: true,
   duplicated: true
 });
+
+<!--time modal-->
+<div id="timeModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close" ng-click="editor.timeOff()">×</button>
+      <h2>Current Time</h2>
+    </div>
+    <form>
+      <div class="modal-body">
+        <input type="text" placeholder="PlaceHolder">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" name="button" class="btn btn-success">Add</button>
+    </div>
+    </form>
+  </div>
+
+</div>
+
+var e = document.getElementById("screen");
+var x = document.querySelectorAll("#screen");
+var elements = Array.from(x[0].children)
+console.log('the elements',elements);
+
+for (var i = 0; i < elements.length; i++) {
+    e.appendChild(elements[i]);
+  }

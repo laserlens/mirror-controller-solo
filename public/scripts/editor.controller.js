@@ -1,7 +1,8 @@
 angular.module('mirrorApp')
 .controller('EditorController', EditorController);
 
-function EditorController($timeout, $http, $location, $compile, NavService, UserService, WeatherService, NewsService) {
+function EditorController($timeout, $http, $location, $compile, NavService,
+                          UserService, WeatherService, NewsService ) {
   var ctrl = this;
   //store forecast data
   ctrl.forecasts = [];
@@ -11,11 +12,33 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
   ctrl.activeW = false;
   ctrl.activeT = false;
   ctrl.activeN = false;
+  ctrl.activeM = false;
 
   //show preview, save, and logout buttons
   NavService.status.save = true;
   NavService.status.preview = true;
   NavService.status.logout = true;
+
+  //hide the element and reset the data
+  //news reset
+  ctrl.removeNews = function() {
+    ctrl.topNews=[];
+    ctrl.activeN = false;
+  };
+  //weather reset
+  ctrl.removeWeather = function() {
+    ctrl.forecasts = [];
+    ctrl.activeW = false;
+  };
+  //hide the time
+  ctrl.removeTime = function() {
+    ctrl.activeT = false;
+  };
+  //message reset
+  ctrl.removeMessage = function() {
+    ctrl.activeM = false;
+    ctrl.message = null;
+  };
 
   //funtion for ng-submit event on add weather
   ctrl.weatherZip = function () {
@@ -54,6 +77,11 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
   ctrl.timeOn = function () {
     ctrl.activeT = true;
   }
+  //function to show the time
+  ctrl.showMessage = function () {
+    ctrl.activeM = true;
+    mModal.style.display = 'none';
+  }
 
   //news api function
   ctrl.choice = function() {
@@ -75,6 +103,9 @@ function EditorController($timeout, $http, $location, $compile, NavService, User
       var marquee = document.getElementsByClassName('marquee');
       for(var i = 0; i < marquee.length; i++) {
           marquee[i].start();
+        };
+        function resetSelectElement(selectElement) {
+          selecElement.selectedIndex = 0;  // first option is selected
         };
     });
   }
@@ -197,5 +228,33 @@ $('#news').draggable({
     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
   }
 });//end of the draggable news element
+//message draggable element
+$('#message').draggable({
+  cursor: 'move',
+  delay: 100,
+  scroll: false,
+  containment: 'parent'
+})
+.resizable({
+  containment: 'parent',
+  maxWidth: 500,
+  resize: function( event, ui ) {
+    // handle fontsize here
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+  }
+});//end of the draggable message element
+$('#screen').resizable({
+  resize: function( event, ui ) {
+    // handle fontsize
+    console.log(ui.size); // gives you the current size of the div
+    //var size = ui.size;
+    // change the values of the font-size
+    //$(this).css('font-size', (size.width * size.height)/1000 + 'px');
+  }
+});
+
 
 }//end of EditorController function

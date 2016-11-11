@@ -8,22 +8,73 @@ html {
             user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
+/* fullscreen style */
+#screen:-webkit-full-screen	{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#screen:-webkit-full-screen	#clock{
+  position: absolute;
+  color: white;
+  position: relative;
+}
+#screen:-moz-full-screen		{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#screen:-ms-full-screen		{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#screen:-o-full-screen		{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#screen:full-screen			{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+#screen:full-screen	#clock{
+  position: absolute;
+  color: white;
+  position: relative;
+}
+
 .noIbar {
   cursor:default;
 }
 .move {
   cursor: move;
 }
+.xBox {
+  cursor: pointer;
+  /*float: right;*/
+  color: red;
+  display: none;
+}
+.move:hover  .xBox {
+    display: block;
+}
+
 #screen{
-  border: 1px solid black;
-  height:40em;
-  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.outside{
+  border: 2px solid black;
+  height: 42em;
 }
 #draggable{
   background-color:transparent;
 }
 #clock{
   background-color:transparent;
+  position: relative;
 }
 #news{
   background-color: transparent;
