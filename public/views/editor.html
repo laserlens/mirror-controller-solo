@@ -1,5 +1,64 @@
-<div class="container-fluid outside">
-  <div class="container-fluid noIbar" id="screen">
+  <div class="container-fluid">
+    <button ng-click="editor.weatherTools()" class="btn btn-warning btn-lg btn-block fButton">Weather</button>
+    <div class="tool-content" ng-show="editor.weatherShow" >
+      <div class="tool-header">
+        <h2>3 Day Forecast</h2>
+      </div>
+      <form ng-submit="editor.weatherZip()">
+        <div>
+          <label class="sr-only">Zip Code</label>
+          <input class="form-control input-lg" type="number" ng-model="editor.zip" placeholder="Zip Code">
+        </div>
+      <div class="tool-footer">
+        <button type="submit" name="button" class="btn btn-success btn-block normal">Add</button>
+      </div>
+      </form>
+    </div>
+    <button class="btn btn-warning btn-lg btn-block fButton" ng-click="editor.timeTools()">Time</button>
+    <div class="tool-content" ng-show="editor.timeShow">
+      <div class="tool-header">
+        <h2>Clock</h2>
+      </div>
+        <div>
+
+        </div>
+      <div class="tool-footer">
+        <button ng-click="editor.timeOn()" name="button" class="btn btn-success btn-block normal">Add</button>
+      </div>
+    </div>
+    <button class="btn btn-warning btn-lg btn-block fButton" ng-click="editor.newsOn()">News</button>
+    <div class="tool-content" ng-show="editor.newsShow">
+      <div class="tool-header">
+        <h2>Pick a News Source</h2>
+      </div>
+      <form>
+        <select class="form-control input-lg" ng-change="editor.choice()" ng-model="editor.name">
+          <option value="" disabled selected>Select a News Source</option>
+          <option ng-repeat="source in editor.sources" >{{source.name}}</option>
+        </select>
+      <div class="tool-footer">
+        <button type="submit" name="button" class="btn btn-success btn-block normal" ng-click="editor.newsOff()" disable>Add</button>
+      </div>
+      </form>
+    </div>
+    <button class="btn btn-warning btn-lg btn-block fButton" ng-click="editor.messageOn()">Message</button>
+    <div class="tool-content" ng-show="editor.messageShow">
+      <div class="tool-header">
+        <h2>Personalized Message</h2>
+      </div>
+      <form>
+        <div>
+          <label class="sr-only">Text Area</label>
+          <textarea class="form-control" rows="3" placeholder="Type a Message Here" ng-model="editor.message"></textarea>
+        </div>
+      <div class="tool-footer">
+        <button ng-click="editor.showMessage()" type="submit" name="button" class="btn btn-success btn-block normal">Add</button>
+      </div>
+      </form>
+    </div>
+  </div>
+<div class="container-fluid screen-container">
+  <div class="row col-xs-12 col-md-12 col-lg-12 noIbar" id="screen">
     <p ng-show="editor.loadingOn">loading...</p>
     <div ng-show="editor.activeW" class="row col-xs-3 col-md-3 col-lg-3 ui-widget-content move" id="draggable">
       <div>
@@ -11,11 +70,11 @@
         <p>Temp: {{forecast.high.fahrenheit}}/{{forecast.low.fahrenheit}}&deg;F</p>
       </span>
     </div>
-    <div ng-show="editor.activeT" class="row col-xs-2 col-md-2 col-lg-2 ui-widget-content move" id="clock">
+    <div ng-show="editor.activeT" class="row col-xs-2 col-md-2 col-lg-2 ui-widget-content move" id="clock" >
       <div>
         <button ng-click="editor.removeTime()" class="btn btn-default btn-xs xBox">remove</button>
       </div>
-      <p>{{editor.clock | date:'medium'}}</p>
+      <p id="clockImage">{{editor.clock | date:'medium'}}</p>
     </div>
     <div ng-show="editor.activeN" class="row col-xs-12 col-md-12 col-lg-12 ui-widget-content move" id="news">
       <div>
@@ -33,78 +92,3 @@
     </div>
   </div>
  </div>
-
-<footer class="footer">
-  <div class="container text-center">
-    <button class="btn btn-warning fButton" ng-click="editor.weatherOn()">Weather</button>
-    <button class="btn btn-warning fButton" ng-click="editor.timeOn()">Time</button>
-    <button class="btn btn-warning fButton" ng-click="editor.newsOn()">News</button>
-    <button class="btn btn-warning fButton" ng-click="editor.messageOn()">Message</button>
-  </div>
-</footer>
-
-<!--weather modal-->
-<div id="weatherModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button class="close" ng-click="editor.weatherOff()">×</button>
-      <h2>3 Day Forecast</h2>
-    </div>
-    <form ng-submit="editor.weatherZip()">
-      <div class="modal-body">
-        <label class="sr-only">Zip Code</label>
-        <input class="form-control input-lg" type="number" ng-model="editor.zip" placeholder="Zip Code">
-      </div>
-    <div class="modal-footer">
-      <button type="submit" name="button" class="btn btn-success btn-lg normal">Add</button>
-    </div>
-    </form>
-  </div>
-
-</div>
-
-<!--news modal-->
-<div id="newsModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button class="close" ng-click="editor.newsOff()">×</button>
-      <h2>Pick a News Source</h2>
-    </div>
-    <form>
-      <select class="form-control input-lg" ng-change="editor.choice()" ng-model="editor.name">
-        <option value="" disabled selected>Select a News Source</option>
-        <option ng-repeat="source in editor.sources" >{{source.name}}</option>
-      </select>
-    <div class="modal-footer">
-      <button type="submit" name="button" class="btn btn-success btn-lg normal" ng-click="editor.newsOff()">Add</button>
-    </div>
-    </form>
-  </div>
-
-</div>
-
-<!--message modal-->
-<div id="messageModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button class="close" ng-click="editor.messageOff()">×</button>
-      <h2>Leave a Message</h2>
-    </div>
-    <form>
-      <div class="modal-body">
-        <label class="sr-only">Text Area</label>
-        <textarea class="form-control" rows="3" placeholder="Type a Message Here" ng-model="editor.message"></textarea>
-      </div>
-    <div class="modal-footer">
-      <button ng-click="editor.showMessage()" type="submit" name="button" class="btn btn-success btn-lg normal">Add</button>
-    </div>
-    </form>
-  </div>
-
-</div>

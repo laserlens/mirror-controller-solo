@@ -97,11 +97,20 @@ $('.marquee').marquee({
 
 </div>
 
-var e = document.getElementById("screen");
+// var e = document.getElementById("screen");
 var x = document.querySelectorAll("#screen");
 var elements = Array.from(x[0].children)
 console.log('the elements',elements);
 
 for (var i = 0; i < elements.length; i++) {
     e.appendChild(elements[i]);
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #100047;
   }

@@ -8,41 +8,55 @@ html {
             user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
+html, body {
+    height:100%;
+    width:100%;
+    margin:0px;
+}
 /* fullscreen style */
 #screen:-webkit-full-screen	{
   width: 100%;
   height: 100%;
   background-color: black;
+  display: block;
 }
-#screen:-webkit-full-screen	#clock{
-  position: absolute;
+#screen:-webkit-full-screen	#clock,#screen:-webkit-full-screen #draggable,#screen:-webkit-full-screen #news,#screen:-webkit-full-screen #message{
   color: white;
-  position: relative;
+  border-color: black;
+}
+#screen:-webkit-full-screen	#clock:hover,#screen:-webkit-full-screen #draggable:hover,#screen:-webkit-full-screen #news:hover,#screen:-webkit-full-screen #message:hover{
+  border-color: white;
 }
 #screen:-moz-full-screen		{
   width: 100%;
   height: 100%;
   background-color: black;
+  display: block;
 }
 #screen:-ms-full-screen		{
   width: 100%;
   height: 100%;
   background-color: black;
+  display: block;
 }
 #screen:-o-full-screen		{
   width: 100%;
   height: 100%;
   background-color: black;
+  display: block;
 }
 #screen:full-screen			{
   width: 100%;
   height: 100%;
   background-color: black;
+  display: block;
 }
-#screen:full-screen	#clock{
-  position: absolute;
+#screen:full-screen	#clock,full-screen #draggable,full-screen #news,full-screen #message{
   color: white;
-  position: relative;
+  border-color: black;
+}
+#screen:full-screen	#clock:hover,#screen:full-screen #draggable:hover,#screen:full-screen #news:hover,#screen:full-screen #message:hover{
+  border-color: white;
 }
 
 .noIbar {
@@ -51,85 +65,67 @@ html {
 .move {
   cursor: move;
 }
+
 .xBox {
   cursor: pointer;
-  /*float: right;*/
   color: red;
   display: none;
 }
 .move:hover  .xBox {
     display: block;
 }
-
-#screen{
-  height: 100%;
+.screen-container{
   width: 100%;
 }
-.outside{
-  border: 2px solid black;
-  height: 42em;
+#screen{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: none;
 }
 #draggable{
   background-color:transparent;
 }
 #clock{
   background-color:transparent;
-  position: relative;
 }
 #news{
   background-color: transparent;
 }
-.newsfloat{
-  float:left;
+#message{
+  background-color: transparent;
 }
 .normal{
   margin: 0;
 }
-.logout{
-  float: right;
+a {
+  color: white;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
-  background-color: #100047;
+a:hover {
+  color: white;
 }
+
 .navee{
   color: white;
   background-color: #100047;
   font-family: sans-serif;
 }
-button{
-  margin: 1em;
+.header{
+  display: flex;
 }
+
+
 .fButton{
   margin: 0 0 1em 0;
   color: black;
+  font-size: 24px;
   font-style: bold;
 }
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
+/* tool Content */
+.tool-content {
     position: relative;
     background-color: #fefefe;
-    margin: auto;
+    margin: auto auto 3em auto;;
     padding: 0;
     border: 1px solid #888;
     width: 80%;
@@ -139,33 +135,12 @@ button{
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-
-
-/* The Close Button */
-.close {
-    margin: 0;
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-header {
+.tool-header {
     padding: 2px 16px;
     background-color: #100047;
     color: white;
 }
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
+.tool-footer {
     padding: 2px 16px;
     background-color: #100047;
     color: white;

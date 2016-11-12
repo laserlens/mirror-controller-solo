@@ -9,15 +9,48 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   //store news data
   ctrl.topNews=[];
   //starts ng-show as false
+  //ng-show for whats displayed on the fullscreen
   ctrl.activeW = false;
   ctrl.activeT = false;
   ctrl.activeN = false;
   ctrl.activeM = false;
+  //ng-show for tools
+  ctrl.weatherShow = false;
+  ctrl.newsShow = false;
+  ctrl.messageShow = false;
+  ctrl.timeShow = false;
 
   //show preview, save, and logout buttons
   NavService.status.save = true;
   NavService.status.preview = true;
   NavService.status.logout = true;
+
+  //show weather tools
+  ctrl.weatherTools = function () {
+    if (ctrl.weatherShow == false) {
+      ctrl.weatherShow = true;
+    }else {
+      ctrl.weatherShow = false;
+    }
+  };
+  //show message tools
+  ctrl.messageOn = function () {
+    if (ctrl.messageShow == false) {
+      ctrl.messageShow = true;
+    }else {
+      ctrl.messageShow = false;
+    }
+  };
+  //show time tools
+  ctrl.timeTools = function () {
+    if (ctrl.timeShow == false) {
+      ctrl.timeShow = true;
+    }else {
+      ctrl.timeShow = false;
+    }
+  };
+
+
 
   //hide the element and reset the data
   //news reset
@@ -73,14 +106,13 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   // Start the timer
   $timeout(tick, ctrl.tickInterval);
 
-  //function to show the time
+  //function to add the time
   ctrl.timeOn = function () {
     ctrl.activeT = true;
   }
-  //function to show the time
+  //function to add the message
   ctrl.showMessage = function () {
     ctrl.activeM = true;
-    mModal.style.display = 'none';
   }
 
   //news api function
@@ -111,62 +143,21 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   }
 
 
-
-
-//weather modal controls
-// Get the modal
-var wModal = document.getElementById('weatherModal');
-
-// When the user clicks the button, open the modal
-ctrl.weatherOn = function() {
-    wModal.style.display = 'block';
-}
-// When the user clicks on <span> (x), close the modal
-ctrl.weatherOff = function() {
-    wModal.style.display = 'none';
-}
-
-
-//news modal controls
-// Get the modal
-var nModal = document.getElementById('newsModal');
-
-// When the user clicks the button, open the modal
+// When the user clicks the button, show the news tools
 ctrl.newsOn = function() {
-    nModal.style.display = 'block';
+    ctrl.activeN = true;
+    if (ctrl.newsShow == false) {
+      ctrl.newsShow = true;
+    }else {
+      ctrl.newsShow = false;
+    }
+
     //get the sources to add to the selector
     NewsService.sourceSearch().then(function(response){
       //console.log('what are the sources to choose from', response.data.sources);
       ctrl.sources = response.data.sources
       //console.log('whats ctrl.sources', ctrl.sources);
     });
-}
-// When the user clicks on <span> (x), close the modal
-ctrl.newsOff = function() {
-    nModal.style.display = 'none';
-    ctrl.activeN = true;
-}
-
-//message modal controls
-// Get the modal
-var mModal = document.getElementById('messageModal');
-
-// When the user clicks the button, open the modal
-ctrl.messageOn = function() {
-    mModal.style.display = 'block';
-}
-// When the user clicks on <span> (x), close the modal
-ctrl.messageOff = function() {
-    mModal.style.display = 'none';
-}
-// When the user clicks anywhere outside of the modal, close all modals
-window.onclick = function(event) {
-    if (event.target == mModal||event.target == wModal||event.target == nModal) {
-        mModal.style.display = 'none';
-        wModal.style.display = 'none';
-        nModal.style.display = 'none';
-        //tModal.style.display = 'none';
-    }
 }
 
 
@@ -246,15 +237,10 @@ $('#message').draggable({
     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
   }
 });//end of the draggable message element
-$('#screen').resizable({
-  resize: function( event, ui ) {
-    // handle fontsize
-    console.log(ui.size); // gives you the current size of the div
-    //var size = ui.size;
-    // change the values of the font-size
-    //$(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});
+
+// var x = document.querySelectorAll("#screen");
+// console.log('whats the query',x);
+
 
 
 }//end of EditorController function
