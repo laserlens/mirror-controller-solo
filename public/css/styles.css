@@ -21,6 +21,7 @@ html, body {
   display: block;
 }
 #screen:-webkit-full-screen	#clock,#screen:-webkit-full-screen #draggable,#screen:-webkit-full-screen #news,#screen:-webkit-full-screen #message{
+  position: relative;
   color: white;
   border-color: black;
 }
@@ -51,7 +52,8 @@ html, body {
   background-color: black;
   display: block;
 }
-#screen:full-screen	#clock,full-screen #draggable,full-screen #news,full-screen #message{
+#screen:full-screen	#clock,#screen:full-screen #draggable,#screen:full-screen #news,#screen:full-screen #message{
+  position: relative;
   color: white;
   border-color: black;
 }
@@ -74,12 +76,8 @@ html, body {
 .move:hover  .xBox {
     display: block;
 }
-.screen-container{
-  width: 100%;
-}
 #screen{
-  position: relative;
-  height: 100%;
+  height: 50em;
   width: 100%;
   display: none;
 }
@@ -95,6 +93,10 @@ html, body {
 #message{
   background-color: transparent;
 }
+.example{
+  background-color: black;
+  color: white;
+}
 .normal{
   margin: 0;
 }
@@ -104,7 +106,6 @@ a {
 a:hover {
   color: white;
 }
-
 .navee{
   color: white;
   background-color: #100047;
@@ -113,8 +114,6 @@ a:hover {
 .header{
   display: flex;
 }
-
-
 .fButton{
   margin: 0 0 1em 0;
   color: black;

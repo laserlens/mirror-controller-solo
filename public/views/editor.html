@@ -4,6 +4,18 @@
       <div class="tool-header">
         <h2>3 Day Forecast</h2>
       </div>
+    <div>
+      <h3><select ng-model="wFont" ng-options="wFont as wFont.label for wFont in editor.fonts" ng-change="editor.weatherFontChange(wFont)"></select>
+      <font face="{{editor.weatherSelectedFont}}">{{editor.weatherSelectedFont}}</font></h3>
+    </div>
+    <div>
+      <h3><select ng-model="dayColor" ng-options="dayColor as dayColor.color for dayColor in editor.colors" ng-change="editor.weatherDayColorChange(dayColor)"></select>
+      <font class="example" ng-style="editor.weatherSelectedDayColor" face="{{editor.weatherSelectedFont}}">{{editor.weatherSelectedFont}} Color for Day of the Week</font></h3>
+    </div>
+    <div>
+      <h3><select ng-model="tempColor" ng-options="tempColor as tempColor.color for tempColor in editor.colors" ng-change="editor.weatherTempColorChange(tempColor)"></select>
+      <font class="example" ng-style="editor.weatherSelectedTempColor" face="{{editor.weatherSelectedFont}}">{{editor.weatherSelectedFont}} Color for the Temp</font></h3>
+    </div>
       <form ng-submit="editor.weatherZip()">
         <div>
           <label class="sr-only">Zip Code</label>
@@ -20,7 +32,12 @@
         <h2>Clock</h2>
       </div>
         <div>
-
+          <h3><select ng-model="tFont" ng-options="tFont as tFont.label for tFont in editor.fonts" ng-change="editor.timeFontChange(tFont)"></select>
+          <font face="{{editor.timeSelectedFont}}">{{editor.timeSelectedFont}}</font></h3>
+        </div>
+        <div>
+          <h3><select ng-model="tColor" ng-options="tColor as tColor.color for tColor in editor.colors" ng-change="editor.timeClockColorChange(tColor)"></select>
+          <font class="example" ng-style="editor.timeSelectedClockColor" face="{{editor.timeSelectedFont}}">{{editor.timeSelectedFont}} Color for the Clock</font></h3>
         </div>
       <div class="tool-footer">
         <button ng-click="editor.timeOn()" name="button" class="btn btn-success btn-block normal">Add</button>
@@ -30,6 +47,18 @@
     <div class="tool-content" ng-show="editor.newsShow">
       <div class="tool-header">
         <h2>Pick a News Source</h2>
+      </div>
+      <div>
+        <h3><select ng-model="nFont" ng-options="nFont as nFont.label for nFont in editor.fonts" ng-change="editor.newsFontChange(nFont)"></select>
+        <font face="{{editor.newsSelectedFont}}">{{editor.newsSelectedFont}}</font></h3>
+      </div>
+      <div>
+        <h3><select ng-model="titleColor" ng-options="titleColor as titleColor.color for titleColor in editor.colors" ng-change="editor.newsTitleColorChange(titleColor)"></select>
+        <font class="example" ng-style="editor.newsSelectedTitleColor" face="{{editor.newsSelectedFont}}">{{editor.newsSelectedFont}} Color of the Title</font></h3>
+      </div>
+      <div>
+        <h3><select ng-model="discColor" ng-options="discColor as discColor.color for discColor in editor.colors" ng-change="editor.newsDescriptionColorChange(discColor)"></select>
+        <font class="example" ng-style="editor.newsSelectedDiscriptionColor" face="{{editor.newsSelectedFont}}">{{editor.newsSelectedFont}} Color for the Description</font></h3>
       </div>
       <form>
         <select class="form-control input-lg" ng-change="editor.choice()" ng-model="editor.name">
@@ -46,6 +75,14 @@
       <div class="tool-header">
         <h2>Personalized Message</h2>
       </div>
+      <div>
+        <h3><select ng-model="font" ng-options="font as font.label for font in editor.fonts" ng-change="editor.messageFontChange(font)"></select>
+        <font face="{{editor.messageSelectedFont}}">{{editor.messageSelectedFont}}</font></h3>
+      </div>
+      <div>
+        <h3><select ng-model="color" ng-options="color as color.color for color in editor.colors" ng-change="editor.messageColorChange(color)"></select>
+        <font class="example" ng-style="editor.messageSelectedColor" face="{{editor.messageSelectedFont}}">{{editor.messageSelectedFont}} Color of the Message</font></h3>
+      </div>
       <form>
         <div>
           <label class="sr-only">Text Area</label>
@@ -57,7 +94,7 @@
       </form>
     </div>
   </div>
-<div class="container-fluid screen-container">
+  <!--Mirror Display-->
   <div class="row col-xs-12 col-md-12 col-lg-12 noIbar" id="screen">
     <p ng-show="editor.loadingOn">loading...</p>
     <div ng-show="editor.activeW" class="row col-xs-3 col-md-3 col-lg-3 ui-widget-content move" id="draggable">
@@ -65,30 +102,32 @@
         <button ng-click="editor.removeWeather()" class="btn btn-default btn-xs xBox">remove</button>
       </div>
       <span ng-repeat="forecast in editor.forecasts" class="text-center">
-        <p><u><strong>{{forecast.date.weekday}}</strong></u></p>
+        <p><font ng-style="editor.weatherSelectedDayColor" face="{{editor.weatherSelectedFont}}"><u><strong>{{forecast.date.weekday}}</strong></u></font></p>
         <img class="img-responsive center-block" src="{{forecast.icon_url}}" alt="{{forecast.icon}}" />
-        <p>Temp: {{forecast.high.fahrenheit}}/{{forecast.low.fahrenheit}}&deg;F</p>
+        <p><font ng-style="editor.weatherSelectedTempColor" face="{{editor.weatherSelectedFont}}">Temp: {{forecast.high.fahrenheit}}/{{forecast.low.fahrenheit}}&deg;F<font face="{{editor.weatherSelectedFont}}"></p>
       </span>
     </div>
     <div ng-show="editor.activeT" class="row col-xs-2 col-md-2 col-lg-2 ui-widget-content move" id="clock" >
       <div>
         <button ng-click="editor.removeTime()" class="btn btn-default btn-xs xBox">remove</button>
       </div>
-      <p id="clockImage">{{editor.clock | date:'medium'}}</p>
+      <div>
+        <p><font ng-style="editor.timeSelectedClockColor" face="{{editor.timeSelectedFont}}">{{editor.clock | date:'medium'}}</font></p>
+      </div>
     </div>
     <div ng-show="editor.activeN" class="row col-xs-12 col-md-12 col-lg-12 ui-widget-content move" id="news">
       <div>
         <button ng-click="editor.removeNews()" class="btn btn-default btn-xs xBox">remove</button>
       </div>
       <marquee ng-repeat="news in editor.topNews" class="marquee">
-        <span ng-repeat="data in news"><strong>{{data.title}}:&nbsp;</strong>{{data.description}}&nbsp;&nbsp;&nbsp;</span>
+        <span ng-repeat="data in news"><font ng-style="editor.newsSelectedTitleColor" face="{{editor.newsSelectedFont}}"><strong>{{data.title}}:&nbsp;</strong></font>
+        <font ng-style="editor.newsSelectedDiscriptionColor" face="{{editor.newsSelectedFont}}">{{data.description}}&nbsp;&nbsp;&nbsp;</font></span>
       </marquee>
     </div>
     <div ng-show="editor.activeM" class="row col-xs-4 col-md-4 col-lg-4 ui-widget-content move" id="message">
       <div>
         <button ng-click="editor.removeMessage()" class="btn btn-default btn-xs xBox">remove</button>
       </div>
-      <p>{{editor.message}}</p>
+      <p><font ng-style="editor.messageSelectedColor" face="{{editor.messageSelectedFont}}">{{editor.message}}</font></p>
     </div>
   </div>
- </div>

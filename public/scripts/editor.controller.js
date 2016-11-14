@@ -91,7 +91,6 @@ function EditorController($timeout, $http, $location, $compile, NavService,
       ctrl.loadingOn = false;
     });
     ctrl.zip = null;
-    wModal.style.display = 'none';
   };//end of weather get
 
   //time widget
@@ -159,11 +158,135 @@ ctrl.newsOn = function() {
       //console.log('whats ctrl.sources', ctrl.sources);
     });
 }
-
+//font controlls
+//array of fonts user can choose from
+ctrl.fonts = [
+  {
+     value: 'Andale Mono',
+     label: 'Andale Mono'
+   },
+   {
+      value: 'Arial',
+      label: 'Arial'
+    },
+    {
+       value: 'Comic Sans MS',
+       label: 'Comic Sans MS'
+    },
+    {
+      value: 'Courier New',
+      label: 'Courier New'
+    },
+    {
+       value: 'Georgia',
+       label: 'Georgia'
+     },
+     {
+        value: 'Gothic',
+        label: 'Gothic'
+    },
+     {
+        value: 'Impact',
+        label: 'Impact'
+    },
+    {
+       value: 'Sans Serif,',
+       label: 'Sans Serif,'
+   },
+    {
+       value: 'Times New Roman',
+       label: 'Times New Roman'
+    },
+    {
+       value: 'Tahoma',
+       label: 'Tahoma'
+     },
+    {
+      value: 'Verdana',
+      label: 'Verdana'
+    }
+];
+//array of colors user cahn choose from
+ctrl.colors = [
+  {
+    color:'white'
+  },
+  {
+    color:'gray'
+  },
+  {
+    color:'yellow'
+  },
+  {
+    color:'red'
+  },
+  {
+    color:'blue'
+  },
+  {
+    color:'green'
+  },
+  {
+    color:'orange'
+  },
+  {
+    color:'purple'
+  }
+];
+//weather widget font selected
+ctrl.weatherSelectedFont = 'Pick a Font';
+ctrl.weatherFontChange = function (option) {
+   ctrl.weatherSelectedFont = option.value;
+}
+//weather widget font color day selected
+ctrl.weatherSelectedDayColor = '';
+ctrl.weatherDayColorChange = function (option) {
+   ctrl.weatherSelectedDayColor = {'color':option.color};
+}
+//weather widget font color temp selected
+ctrl.weatherSelectedTempColor = '';
+ctrl.weatherTempColorChange = function (option) {
+   ctrl.weatherSelectedTempColor = {'color':option.color};
+}
+//time widget font selected
+ctrl.timeSelectedFont = 'Pick a Font';
+ctrl.timeFontChange = function (option) {
+   ctrl.timeSelectedFont = option.value;
+}
+//time widget font color clock selected
+ctrl.timeSelectedClockColor = '';
+ctrl.timeClockColorChange = function (option) {
+   ctrl.timeSelectedClockColor = {'color':option.color};
+}
+//news widget font selected
+ctrl.newsSelectedFont = 'Pick a Font';
+ctrl.newsFontChange = function (option) {
+   ctrl.newsSelectedFont = option.value;
+}
+//news widget font color title selected
+ctrl.newsSelectedTitleColor = '';
+ctrl.newsTitleColorChange = function (option) {
+   ctrl.newsSelectedTitleColor = {'color':option.color};
+}
+//news widget font color discription selected
+ctrl.newsSelectedDiscriptionColor = '';
+ctrl.newsDescriptionColorChange = function (option) {
+   ctrl.newsSelectedDiscriptionColor = {'color':option.color};
+}
+//message widget font selected
+ctrl.messageSelectedFont = 'Pick a Font';
+ctrl.messageFontChange = function (option) {
+   ctrl.messageSelectedFont = option.value;
+}
+//time widget font color clock selected
+ctrl.messageSelectedColor = '';
+ctrl.messageColorChange = function (option) {
+   ctrl.messageSelectedColor = {'color':option.color};
+}
 
 //use jquery-ui draggable feature with resizable
 //weather widget draggable controls
-$('#draggable').draggable({
+$('.move').draggable({
   cursor: 'move',
   delay: 100,
   scroll: false,
@@ -183,60 +306,62 @@ $('#draggable').draggable({
   }
 });//end of the draggable weather element
 
-//clock draggable element
-$('#clock').draggable({
-  cursor: 'move',
-  delay: 100,
-  scroll: false,
-  containment: 'parent'
-})
-.resizable({
-  containment: 'parent',
-  maxWidth: 289,
-  resize: function( event, ui ) {
-    // handle fontsize here
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable clock element
-//news draggable element
-$('#news').draggable({
-  cursor: 'move',
-  delay: 100,
-  scroll: false,
-  containment: 'parent'
-})
-.resizable({
-  containment: 'parent',
-  maxWidth: 1000,
-  resize: function( event, ui ) {
-    // handle fontsize
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable news element
-//message draggable element
-$('#message').draggable({
-  cursor: 'move',
-  delay: 100,
-  scroll: false,
-  containment: 'parent'
-})
-.resizable({
-  containment: 'parent',
-  maxWidth: 500,
-  resize: function( event, ui ) {
-    // handle fontsize here
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable message element
+// //clock draggable element
+// $('#clock').draggable({
+//   cursor: 'move',
+//   delay: 100,
+//   scroll: false,
+//   containment: 'parent'
+// })
+// .resizable({
+//   containment: 'parent',
+//   minWidth: 92,
+//   maxWidth: 289,
+//   resize: function( event, ui ) {
+//     // handle fontsize here
+//     //console.log(ui.size); // gives you the current size of the div
+//     var size = ui.size;
+//     // change the values of the font-size
+//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+//   }
+// });//end of the draggable clock element
+//
+// //news draggable element
+// $('#news').draggable({
+//   cursor: 'move',
+//   delay: 100,
+//   scroll: false,
+//   containment: 'parent'
+// })
+// .resizable({
+//   containment: 'parent',
+//   maxWidth: 1000,
+//   resize: function( event, ui ) {
+//     // handle fontsize
+//     //console.log(ui.size); // gives you the current size of the div
+//     var size = ui.size;
+//     // change the values of the font-size
+//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+//   }
+// });//end of the draggable news element
+// //message draggable element
+// $('#message').draggable({
+//   cursor: 'move',
+//   delay: 100,
+//   scroll: false,
+//   containment: 'parent'
+// })
+// .resizable({
+//   containment: 'parent',
+//   maxWidth: 500,
+//   resize: function( event, ui ) {
+//     // handle fontsize here
+//     //console.log(ui.size); // gives you the current size of the div
+//     var size = ui.size;
+//     // change the values of the font-size
+//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+//   }
+// });//end of the draggable message element
 
 // var x = document.querySelectorAll("#screen");
 // console.log('whats the query',x);
