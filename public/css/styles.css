@@ -81,7 +81,7 @@ html, body {
   width: 100%;
   display: none;
 }
-#draggable{
+#weather{
   background-color:transparent;
 }
 #clock{
@@ -92,6 +92,11 @@ html, body {
 }
 #message{
   background-color: transparent;
+}
+.move{
+  position:fixed !important;
+  width:auto;
+  height:auto;
 }
 .example{
   background-color: black;

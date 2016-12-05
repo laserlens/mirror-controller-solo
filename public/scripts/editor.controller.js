@@ -286,13 +286,20 @@ ctrl.messageColorChange = function (option) {
 
 //use jquery-ui draggable feature with resizable
 //weather widget draggable controls
-$('.move').draggable({
-  cursor: 'move',
-  delay: 100,
-  scroll: false,
-  containment: 'parent'
-})
-.resizable({
+$('#weather').draggable({
+  start: function (event, ui) {
+             var left = parseInt($(this).css('left'),10);
+             left = isNaN(left) ? 0 : left;
+             var top = parseInt($(this).css('top'),10);
+             top = isNaN(top) ? 0 : top;
+             recoupLeft = left - ui.position.left;
+             recoupTop = top - ui.position.top;
+         },
+         drag: function (event, ui) {
+             ui.position.left += recoupLeft;
+             ui.position.top += recoupTop;
+         }
+}).resizable({
   containment: 'parent',
   minHeight: 375,
   minWidth: 92,
@@ -306,62 +313,86 @@ $('.move').draggable({
   }
 });//end of the draggable weather element
 
-// //clock draggable element
-// $('#clock').draggable({
-//   cursor: 'move',
-//   delay: 100,
-//   scroll: false,
-//   containment: 'parent'
-// })
-// .resizable({
-//   containment: 'parent',
-//   minWidth: 92,
-//   maxWidth: 289,
-//   resize: function( event, ui ) {
-//     // handle fontsize here
-//     //console.log(ui.size); // gives you the current size of the div
-//     var size = ui.size;
-//     // change the values of the font-size
-//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-//   }
-// });//end of the draggable clock element
-//
-// //news draggable element
-// $('#news').draggable({
-//   cursor: 'move',
-//   delay: 100,
-//   scroll: false,
-//   containment: 'parent'
-// })
-// .resizable({
-//   containment: 'parent',
-//   maxWidth: 1000,
-//   resize: function( event, ui ) {
-//     // handle fontsize
-//     //console.log(ui.size); // gives you the current size of the div
-//     var size = ui.size;
-//     // change the values of the font-size
-//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-//   }
-// });//end of the draggable news element
-// //message draggable element
-// $('#message').draggable({
-//   cursor: 'move',
-//   delay: 100,
-//   scroll: false,
-//   containment: 'parent'
-// })
-// .resizable({
-//   containment: 'parent',
-//   maxWidth: 500,
-//   resize: function( event, ui ) {
-//     // handle fontsize here
-//     //console.log(ui.size); // gives you the current size of the div
-//     var size = ui.size;
-//     // change the values of the font-size
-//     $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-//   }
-// });//end of the draggable message element
+//clock draggable element
+$('#clock').draggable({
+  start: function (event, ui) {
+             var left = parseInt($(this).css('left'),10);
+             left = isNaN(left) ? 0 : left;
+             var top = parseInt($(this).css('top'),10);
+             top = isNaN(top) ? 0 : top;
+             recoupLeft = left - ui.position.left;
+             recoupTop = top - ui.position.top;
+         },
+         drag: function (event, ui) {
+             ui.position.left += recoupLeft;
+             ui.position.top += recoupTop;
+         }
+})
+.resizable({
+  containment: 'parent',
+  minWidth: 92,
+  maxWidth: 289,
+  resize: function( event, ui ) {
+    // handle fontsize here
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+  }
+});//end of the draggable clock element
+
+//news draggable element
+$('#news').draggable({
+  start: function (event, ui) {
+             var left = parseInt($(this).css('left'),10);
+             left = isNaN(left) ? 0 : left;
+             var top = parseInt($(this).css('top'),10);
+             top = isNaN(top) ? 0 : top;
+             recoupLeft = left - ui.position.left;
+             recoupTop = top - ui.position.top;
+         },
+         drag: function (event, ui) {
+             ui.position.left += recoupLeft;
+             ui.position.top += recoupTop;
+         }
+})
+.resizable({
+  containment: 'parent',
+  maxWidth: 1000,
+  resize: function( event, ui ) {
+    // handle fontsize
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+  }
+});//end of the draggable news element
+//message draggable element
+$('#message').draggable({
+  start: function (event, ui) {
+             var left = parseInt($(this).css('left'),10);
+             left = isNaN(left) ? 0 : left;
+             var top = parseInt($(this).css('top'),10);
+             top = isNaN(top) ? 0 : top;
+             recoupLeft = left - ui.position.left;
+             recoupTop = top - ui.position.top;
+         },
+         drag: function (event, ui) {
+             ui.position.left += recoupLeft;
+             ui.position.top += recoupTop;
+         }
+})
+.resizable({
+  containment: 'parent',
+  maxWidth: 500,
+  resize: function( event, ui ) {
+    // handle fontsize here
+    //console.log(ui.size); // gives you the current size of the div
+    var size = ui.size;
+    // change the values of the font-size
+    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
+  }
+});//end of the draggable message element
 
 // var x = document.querySelectorAll("#screen");
 // console.log('whats the query',x);
