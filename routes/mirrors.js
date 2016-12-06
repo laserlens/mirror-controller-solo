@@ -32,16 +32,7 @@ router.post('/', function(req, res) {
   });
 });
 
-//put display data to User table
-router.put('/', function(req, res) {
-  console.log('whats the req body',req.body);
-  User.update({id:}, {$set: {displayData:[]}}).then(function(response) {
-    console.log('whats the response or the put after then', response);
-     res.sendStatus(201);
-}).catch(function(err){
-    console.log('Error in /mirror post', err);
-    res.sendStatus(500);
-  });
-});
+//udate display data to User table
+
 
 module.exports = router;
