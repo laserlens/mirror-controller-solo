@@ -6,6 +6,9 @@ The application allows users to control what and where widgets are displayed on 
 MongoDB, AngularJS, Express, Node, HTML, CSS, Bootstrap, Weather Underground api, News api, Mongoose, Passport, and Javascript.
 
 # Stretch Goals
+- bringing in touch capabilities for draggable elements so it works on a phone
+- allow for user to rotate the screen to match mirror direction
+- create true logout
 - figure out what data is best to save for a rasberryPi to access
   - currently save button is not functional
 - clean the code and fix any naming conventions to be more clear and precise

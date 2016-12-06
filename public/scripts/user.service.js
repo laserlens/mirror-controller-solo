@@ -3,6 +3,6 @@ angular.module('mirrorApp')
 
 //store the current usersname and data in this service
 function UserService () {
-  var currentUser ={username:'', displayData:[], mirrorId:};
+  var currentUser ={username:'', displayData:[]};
   return{user:currentUser};
 }
