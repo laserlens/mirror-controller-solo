@@ -15,8 +15,15 @@ function IndexController($http, $location, NavService) {
   //logout button truthyness
   index.navStatusL = NavService.status;
 
-  //fullscreen controls trigger by clicking preview
+  //put nodlist into array and save array to database
+  index.save = function () {
+    var data = document.querySelectorAll("#screen");
+    var elements = Array.from(data)
+    console.log(data);
+    console.log(elements);
+  }
 
+  //fullscreen controls trigger by clicking mirror design
   //adds the nessary prefix for fullscreen api
   var pfx = ["webkit", "moz", "ms", "o", ""];
   function RunPrefixMethod(obj, method) {

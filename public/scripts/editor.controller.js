@@ -19,6 +19,10 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   ctrl.newsShow = false;
   ctrl.messageShow = false;
   ctrl.timeShow = false;
+  ctrl.messageAdded = false;
+  ctrl.newsAdded=false;
+  ctrl.timeAdded=false;
+  ctrl.weatherAdded=false;
 
   //show preview, save, and logout buttons
   NavService.status.save = true;
@@ -29,6 +33,9 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   ctrl.weatherTools = function () {
     if (ctrl.weatherShow == false) {
       ctrl.weatherShow = true;
+      ctrl.newsShow = false;
+      ctrl.messageShow = false;
+      ctrl.timeShow = false;
     }else {
       ctrl.weatherShow = false;
     }
@@ -37,6 +44,9 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   ctrl.messageOn = function () {
     if (ctrl.messageShow == false) {
       ctrl.messageShow = true;
+      ctrl.weatherShow = false;
+      ctrl.newsShow = false;
+      ctrl.timeShow = false;
     }else {
       ctrl.messageShow = false;
     }
@@ -45,13 +55,25 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   ctrl.timeTools = function () {
     if (ctrl.timeShow == false) {
       ctrl.timeShow = true;
+      ctrl.weatherShow = false;
+      ctrl.newsShow = false;
+      ctrl.messageShow = false;
     }else {
       ctrl.timeShow = false;
     }
   };
-
-
-
+  // When the user clicks the button, show the news tools
+  ctrl.newsOn = function() {
+      ctrl.activeN = true;
+      if (ctrl.newsShow == false) {
+        ctrl.newsShow = true;
+        ctrl.weatherShow = false;
+        ctrl.messageShow = false;
+        ctrl.timeShow = false;
+      }else {
+        ctrl.newsShow = false;
+      }
+  };
   //hide the element and reset the data
   //news reset
   ctrl.removeNews = function() {
@@ -94,7 +116,7 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   };//end of weather get
 
   //time widget
-  ctrl.clock = 'loading clock...'; // initialise the time variable
+  ctrl.clock = '';
   ctrl.tickInterval = 1000 //ms
 
   var tick = function () {
@@ -123,12 +145,12 @@ function EditorController($timeout, $http, $location, $compile, NavService,
       if (ctrl.name == ctrl.sources[i].name) {
         ctrl.userSource = ctrl.sources[i].id;
       }};
-    //console.log('what is the users source',ctrl.userSource);
+    console.log('what is the users source',ctrl.userSource);
     //get the news of the disired source
     NewsService.newsSearch(ctrl.userSource).then(function(response){
       // make a copy of object instead of storing object itself
       ctrl.topNews.push(angular.copy(response.data.articles));
-      //console.log('whats the array of topNews',ctrl.topNews);
+      console.log('whats the array of topNews',ctrl.topNews);
 
       //restart the marque when adding another news source
       var marquee = document.getElementsByClassName('marquee');
@@ -138,17 +160,7 @@ function EditorController($timeout, $http, $location, $compile, NavService,
         function resetSelectElement(selectElement) {
           selecElement.selectedIndex = 0;  // first option is selected
         };
-    });
-  }
-
-
-// When the user clicks the button, show the news tools
-ctrl.newsOn = function() {
-    ctrl.activeN = true;
-    if (ctrl.newsShow == false) {
-      ctrl.newsShow = true;
-    }else {
-      ctrl.newsShow = false;
+      });
     }
 
     //get the sources to add to the selector
@@ -157,7 +169,7 @@ ctrl.newsOn = function() {
       ctrl.sources = response.data.sources
       //console.log('whats ctrl.sources', ctrl.sources);
     });
-}
+
 //font controlls
 //array of fonts user can choose from
 ctrl.fonts = [
@@ -241,12 +253,24 @@ ctrl.weatherFontChange = function (option) {
 //weather widget font color day selected
 ctrl.weatherSelectedDayColor = '';
 ctrl.weatherDayColorChange = function (option) {
-   ctrl.weatherSelectedDayColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.wColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.wSize = option.size;
+  }
+   ctrl.weatherSelectedDayColor = {'color':ctrl.wColor, 'font-size': ctrl.wSize + 'px'};
 }
 //weather widget font color temp selected
 ctrl.weatherSelectedTempColor = '';
 ctrl.weatherTempColorChange = function (option) {
-   ctrl.weatherSelectedTempColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.tempColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.tempSize = option.size;
+  }
+   ctrl.weatherSelectedTempColor = {'color':ctrl.tempColor, 'font-size': ctrl.tempSize + 'px'};
 }
 //time widget font selected
 ctrl.timeSelectedFont = 'Pick a Font';
@@ -256,7 +280,13 @@ ctrl.timeFontChange = function (option) {
 //time widget font color clock selected
 ctrl.timeSelectedClockColor = '';
 ctrl.timeClockColorChange = function (option) {
-   ctrl.timeSelectedClockColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.timeColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.timeSize = option.size;
+  }
+   ctrl.timeSelectedClockColor = {'color':ctrl.timeColor, 'font-size': ctrl.timeSize + 'px'};
 }
 //news widget font selected
 ctrl.newsSelectedFont = 'Pick a Font';
@@ -266,12 +296,24 @@ ctrl.newsFontChange = function (option) {
 //news widget font color title selected
 ctrl.newsSelectedTitleColor = '';
 ctrl.newsTitleColorChange = function (option) {
-   ctrl.newsSelectedTitleColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.titleColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.titleSize = option.size;
+  }
+   ctrl.newsSelectedTitleColor = {'color':ctrl.titleColor, 'font-size': ctrl.titleSize + 'px'};
 }
 //news widget font color discription selected
 ctrl.newsSelectedDiscriptionColor = '';
 ctrl.newsDescriptionColorChange = function (option) {
-   ctrl.newsSelectedDiscriptionColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.dColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.dSize = option.size;
+  }
+   ctrl.newsSelectedDiscriptionColor = {'color':ctrl.dColor, 'font-size': ctrl.dSize + 'px'};
 }
 //message widget font selected
 ctrl.messageSelectedFont = 'Pick a Font';
@@ -281,13 +323,20 @@ ctrl.messageFontChange = function (option) {
 //time widget font color clock selected
 ctrl.messageSelectedColor = '';
 ctrl.messageColorChange = function (option) {
-   ctrl.messageSelectedColor = {'color':option.color};
+  if (option.color !== undefined) {
+    ctrl.mColor = option.color;
+  }
+  if (option.size !== undefined) {
+    ctrl.mSize = option.size;
+  }
+   ctrl.messageSelectedColor = {'color': ctrl.mColor, 'font-size': ctrl.mSize + 'px'};
+   //console.log('whats the color', option.color) ;
+   //console.log('whats the size', option.size);
 }
 
-//use jquery-ui draggable feature with resizable
-//weather widget draggable controls
-$('#weather').draggable({
-  start: function (event, ui) {
+//use jquery-ui draggable feature
+  $('.move').draggable({
+    start: function (event, ui) {
              var left = parseInt($(this).css('left'),10);
              left = isNaN(left) ? 0 : left;
              var top = parseInt($(this).css('top'),10);
@@ -299,104 +348,6 @@ $('#weather').draggable({
              ui.position.left += recoupLeft;
              ui.position.top += recoupTop;
          }
-}).resizable({
-  containment: 'parent',
-  minHeight: 375,
-  minWidth: 92,
-  maxWidth: 289,
-  resize: function( event, ui ) {
-    // handle fontsize
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/7000 + 'px');
-  }
-});//end of the draggable weather element
-
-//clock draggable element
-$('#clock').draggable({
-  start: function (event, ui) {
-             var left = parseInt($(this).css('left'),10);
-             left = isNaN(left) ? 0 : left;
-             var top = parseInt($(this).css('top'),10);
-             top = isNaN(top) ? 0 : top;
-             recoupLeft = left - ui.position.left;
-             recoupTop = top - ui.position.top;
-         },
-         drag: function (event, ui) {
-             ui.position.left += recoupLeft;
-             ui.position.top += recoupTop;
-         }
-})
-.resizable({
-  containment: 'parent',
-  minWidth: 92,
-  maxWidth: 289,
-  resize: function( event, ui ) {
-    // handle fontsize here
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable clock element
-
-//news draggable element
-$('#news').draggable({
-  start: function (event, ui) {
-             var left = parseInt($(this).css('left'),10);
-             left = isNaN(left) ? 0 : left;
-             var top = parseInt($(this).css('top'),10);
-             top = isNaN(top) ? 0 : top;
-             recoupLeft = left - ui.position.left;
-             recoupTop = top - ui.position.top;
-         },
-         drag: function (event, ui) {
-             ui.position.left += recoupLeft;
-             ui.position.top += recoupTop;
-         }
-})
-.resizable({
-  containment: 'parent',
-  maxWidth: 1000,
-  resize: function( event, ui ) {
-    // handle fontsize
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable news element
-//message draggable element
-$('#message').draggable({
-  start: function (event, ui) {
-             var left = parseInt($(this).css('left'),10);
-             left = isNaN(left) ? 0 : left;
-             var top = parseInt($(this).css('top'),10);
-             top = isNaN(top) ? 0 : top;
-             recoupLeft = left - ui.position.left;
-             recoupTop = top - ui.position.top;
-         },
-         drag: function (event, ui) {
-             ui.position.left += recoupLeft;
-             ui.position.top += recoupTop;
-         }
-})
-.resizable({
-  containment: 'parent',
-  maxWidth: 500,
-  resize: function( event, ui ) {
-    // handle fontsize here
-    //console.log(ui.size); // gives you the current size of the div
-    var size = ui.size;
-    // change the values of the font-size
-    $(this).css('font-size', (size.width * size.height)/1000 + 'px');
-  }
-});//end of the draggable message element
-
-// var x = document.querySelectorAll("#screen");
-// console.log('whats the query',x);
-
-
+       });
 
 }//end of EditorController function

@@ -13,7 +13,6 @@
     <script src="vendors/jquery.min.js" charset="utf-8"></script>
     <script src="vendors/jquery-ui.min.js" charset="utf-8"></script>
 
-
     <script src="scripts/app.module.js" charset="utf-8"></script>
     <script src="scripts/login.controller.js" charset="utf-8"></script>
     <script src="scripts/register.controller.js" charset="utf-8"></script>
@@ -36,7 +35,7 @@
         <div class="row col-xs-12 col-md-12 col-lg-12 header">
           <h3 class="text-left">&nbsp;Mirror Controller</h3>
           <div class="row col-xs-8 col-md-8 col-lg-8 text-right headerButtons">
-            <button  ng-show="index.navStatusS.save" class="btn btn-success btn-lg save">Save</button>
+            <button  ng-show="index.navStatusS.save" ng-click="index.save()" class="btn btn-success btn-lg save">Save</button>
             <button  ng-show="index.navStatusP.preview" ng-click="index.fullScreen()" class="btn btn-primary btn-lg preview">Mirror Design</button>
             <button  ng-show="index.navStatusL.logout" class="btn btn-danger btn-lg logout"><a href="/login">Logout</a></button>
           </div>
