@@ -6,7 +6,7 @@ for (var i = 0; i < nodeList.length; ++i) {
 
 function myFunction() {
 var x = document.querySelectorAll(".example");
-var elements = Array.from(x)
+var elements = Array.from(x);
 console.log(x);
 console.log(elements);
 }
