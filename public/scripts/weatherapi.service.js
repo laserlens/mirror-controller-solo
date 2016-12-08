@@ -9,7 +9,7 @@ function WeatherService($http) {
 
   //get the forecast for disired city
   this.citySearch = function (zip) {
-   return $http.get(cityLookup + zip + '.json')
+   return $http.get(cityLookup + zip + '.json'+'/')
        .then(function(response){
          //console.log('whats the geolookup',response);
          var location = response.data.location.l
@@ -21,7 +21,7 @@ function WeatherService($http) {
 
   //get the forecast for disired city
   this.forecastSearch = function(location) {
-   return $http.get(forecast + location + '.json')
+   return $http.get(forecast + location + '.json'+'/')
        .then(WeatherService.forecast = function(response){
          //console.log('voice to text data',response);
          //var msg = new SpeechSynthesisUtterance(response.data.forecast.txt_forecast.forecastday["0"].fcttext);
