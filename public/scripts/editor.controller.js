@@ -8,6 +8,7 @@ function EditorController($timeout, $http, $location, $compile, NavService,
   ctrl.forecasts = [];
   //store news data
   ctrl.topNews=[];
+  ctrl.sources=[];
   //starts ng-show as false
   //ng-show for whats displayed on the fullscreen
   ctrl.activeW = false;

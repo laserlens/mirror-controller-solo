@@ -57,6 +57,6 @@ function ensureAuthenticated(req, res, next) {
 
 var port = process.env.PORT || 3300;
 
-var server = app.listen(, function() {
+var server = app.listen(function() {
   console.log('Listening on port', server.address().port);
 });
