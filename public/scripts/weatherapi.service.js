@@ -2,9 +2,10 @@ angular.module('mirrorApp')
 .service('WeatherService', WeatherService);
 
 function WeatherService($http) {
+  var invocation = new XMLHttpRequest();
   //urls for weather api
-  var cityLookup ='http://api.wunderground.com/api/0f6ff76f537e4c48/geolookup/q/'
-  var forecast = 'http://api.wunderground.com/api/0f6ff76f537e4c48/forecast';
+  var cityLookup ='https://api.wunderground.com/api/0f6ff76f537e4c48/geolookup/q/'
+  var forecast = 'https://api.wunderground.com/api/0f6ff76f537e4c48/forecast';
 
 
   //get the forecast for disired city

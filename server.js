@@ -4,7 +4,7 @@ const connection = require('./db/connection');
 const path = require('path');
 const login = require('./routes/login');
 const register = require('./routes/register');
-const mirrors = require('./routes/mirrors')
+const mirrors = require('./routes/mirrors');
 const auth = require('./auth/setup');
 const passport = require('passport');
 const session = require('express-session');
@@ -41,6 +41,8 @@ app.get('/*', function(req, res){
 
 //eveything beyod this point is authenticate
 app.use(ensureAuthenticated);
+
+
 
 //redundent code I think?
 // app.get('/*', function(req, res){

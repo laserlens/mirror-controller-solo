@@ -114,3 +114,18 @@ for (var i = 0; i < elements.length; i++) {
     line-height: 60px; /* Vertically center the text there */
     background-color: #100047;
   }
+
+  //eveything beyod this point is authenticate
+  app.use(ensureAuthenticated, function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+  app.get('/weather', function(req, res, next) {
+    // Handle the get for this route
+  });
+
+  app.post('/weather', function(req, res, next) {
+   // Handle the post for this route
+  });
